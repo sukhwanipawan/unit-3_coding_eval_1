@@ -4,21 +4,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Unit 3 - coding I</title>
+    <style>
+        #items {
+            border: 2px solid red;
+            width: 700px;
+            display: flex;
+            height: 600px;
+            margin: auto;
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="items">
+        <!-- <table id="tabl"></table> -->
+
+    </div><br/><br/><br/>
 
     <script type="text/javascript">
         window.addEventListener("load", fetching);
+        var items = document.getElementById("items");
         function fetching(){
             fetch("http://localhost:3001/products")
             .then(function (resp){
                 return resp.json();
             })
             .then(function (res){
-                console.log(res);
+                displayingProducts(res[11]);
             })
+            
+        }
+
+        function displayingProducts(res){
+            for (key in res){
+                console.log(res[key]);
+                var div = document.createElement("div");
+                div.style.border = "1px solid green";
+
+                var name = document.createElement("p");
+                name.textContent = res[key].name;
+                
+                var price = document.createElement("p");
+                price.textContent = "₹ "+res[key].price;
+
+                div.append(name, price);
+                items.appendChild(div);
+            }
+            
+
         }
     </script>
 </body>
