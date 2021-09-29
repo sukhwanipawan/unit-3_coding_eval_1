@@ -13,17 +13,29 @@
             height: 600px;
             margin: auto;
         }
+        #tabl {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div id="items">
-        <!-- <table id="tabl"></table> -->
+        <table id="tabl" border="3">
+            <tr>
+                <td>Name</td>
+                <td>Price</td>
+                <td>Quantity</td>
+            </tr>
+        </table>
 
     </div><br/><br/><br/>
 
     <script type="text/javascript">
         window.addEventListener("load", fetching);
-        var items = document.getElementById("items");
+
+        var obj = {}
+        
+        var tabl = document.getElementById("tabl");
         function fetching(){
             fetch("http://localhost:3001/products")
             .then(function (resp){
@@ -37,22 +49,27 @@
 
         function displayingProducts(res){
             for (key in res){
-                console.log(res[key]);
-                var div = document.createElement("div");
-                div.style.border = "1px solid green";
+                var tr = document.createElement("tr");
 
-                var name = document.createElement("p");
+                var name = document.createElement("td");
                 name.textContent = res[key].name;
                 
-                var price = document.createElement("p");
+                var price = document.createElement("td");
                 price.textContent = "₹ "+res[key].price;
 
-                div.append(name, price);
-                items.appendChild(div);
+                var quant = document.createElement("td");
+                quant.textContent = res[key].available_qty;
+
+                obj[name.textContent] = Number(quant.textContent);
+                
+
+                tr.append(name, price, quant);
+                tabl.appendChild(tr);
             }
-            
+            console.log('obj: ', obj);
 
         }
+
     </script>
 </body>
 </html>
