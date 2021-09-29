@@ -8,13 +8,17 @@
     <style>
         #items {
             border: 2px solid red;
-            width: 700px;
-            display: flex;
-            height: 600px;
+            width: 225px;
+            height: 320px;
             margin: auto;
         }
         #tabl {
             text-align: center;
+        }
+        #order {
+            width: 300px;
+            height: 250px;
+
         }
     </style>
 </head>
@@ -29,6 +33,16 @@
         </table>
 
     </div><br/><br/><br/>
+    <div id="order">
+        <form>
+            Order Items By Filling Form <br/><br/>
+            <label>Name:</label>
+            <input placeholder="Enter name of Product" id="prodName"/><br/><br/>
+            <label>Quantity</label>
+            <input id="prodQnty" placeholder="Enter the Quantity You want to buy"/><br/><br/>
+            <input id="submit" value="Place Order" type="button" />
+        </form>
+    </div>
 
     <script type="text/javascript">
         window.addEventListener("load", fetching);
